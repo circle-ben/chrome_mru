@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>MRU Tab Switcher</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      margin: 0;
+      width: 380px;
+      padding: 16px 16px 18px;
+      box-sizing: border-box;
+      font: 13px/1.45 -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+      color: light-dark(#1c1c1e, #f2f2f7);
+      background: light-dark(#ffffff, #1c1c1e);
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      font-weight: 650;
+    }
+    p { margin: 8px 0; }
+    .muted { color: light-dark(#4a4a4f, #b4b4bb); }
+    .status {
+      margin: 12px 0;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: light-dark(#f4f4f5, #2c2c2e);
+    }
+    .status.ready { background: light-dark(#e8f6ec, #16331f); }
+    .status.missing { background: light-dark(#fff4e4, #3a2d16); }
+    .row { display: flex; justify-content: space-between; gap: 12px; margin: 3px 0; }
+    .key { font-variant-numeric: tabular-nums; }
+    details { margin-top: 12px; }
+    summary { cursor: pointer; font-weight: 600; }
+    pre {
+      margin: 8px 0 0;
+      padding: 10px;
+      border-radius: 10px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      font: 11px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace;
+      background: light-dark(#f4f4f5, #2c2c2e);
+    }
+    button {
+      margin-top: 10px;
+      border: 0;
+      border-radius: 8px;
+      padding: 7px 12px;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+      color: white;
+      background: #0a84ff;
+    }
+    button:focus-visible { outline: 2px solid #0a84ff; outline-offset: 2px; }
+  </style>
+</head>
+<body>
+  <h1>MRU Tab Switcher</h1>
+  <p class="muted">Hold Control and press Tab to move through tabs you used most recently. Release Control to switch. Shift reverses direction. Escape cancels.</p>
+  <div id="status" class="status">Checking shortcuts…</div>
+  <details id="setup">
+    <summary>One-time Control+Tab binding</summary>
+    <p class="muted">Chrome blocks Control+Tab on the shortcuts page. On <code>chrome://extensions</code>, open DevTools and paste this once. In that console, <code>Ctrl</code> is the Control key.</p>
+    <pre id="snippet"></pre>
+    <button id="copy" type="button">Copy setup snippet</button>
+  </details>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "MRU Tab Switcher",
+  "version": "1.0.0",
+  "description": "Cycle tabs by most recently used. Hold Control and press Tab to preview; release to switch.",
+  "permissions": ["tabs", "storage", "scripting"],
+  "host_permissions": ["http://*/*", "https://*/*", "file://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "MRU Tab Switcher",
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "cycle-forward": {
+      "description": "Next most recently used tab"
+    },
+    "cycle-backward": {
+      "description": "Previous most recently used tab"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*", "file://*/*"],
+      "js": ["overlay.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
+}
